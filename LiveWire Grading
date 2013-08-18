@@ -1,0 +1,34 @@
+public static void main(String[] args) {
+//Variables setup
+int achievedCorrect = 4; //Number of Achieved-level questions correctly answered by the student
+int achievedAttempted = 5; //Number of Achieved-level questions attempted by the student in the module
+int meritCorrect = 4; //Number of correct Merit-level questions
+int meritAttempted = 5; //Number of attempted Merit-level questions
+int excellenceCorrect = 0; //Number of correct Excellence-level questions
+int excellenceAttempted = 0; //Number of attempted Excellence-level questions
+String studentGrade; //Text string holding the Student's grade
+float achievedPercentage = 0; //Percentage of Achieved-level questions the student got correct - A default value of 0, so that if zero are attempted for a particular achievement level the resulting achievedPercentage is 0
+float meritPercentage = 0; //Percentage of Merit-level questions the student got correct - A default value of 0
+float excellencePercentage = 0; //Percentage of Excellence-level questions the student got correct - A default value of 0
+//Setting Percentages - achievedPercentage, meritPercentage, and excellencePercentage correctly, leaving 0 correct out of 0 as 0%
+if (achievedAttempted != 0) { //If statement to avoid division by zero, so if 0 are attempted achievedPercentage is 0 rather than giving an error
+achievedPercentage = 100 * achievedCorrect / achievedAttempted; //This doesn't really need to be a percentage, could be left as a fraction but this does leave the option for later outputting the students achievedPercentage or meritPercentage if wanted later.
+}
+if (meritAttempted != 0) {
+meritPercentage = 100 * meritCorrect / meritAttempted;
+}
+if (excellenceAttempted != 0) {
+excellencePercentage = 100 * excellenceCorrect / excellenceAttempted;
+}
+//Determining the student's grade
+if (excellencePercentage >= meritPercentage && excellencePercentage >= achievedPercentage) { //If the percentage of correctly answered questions Excellence-level is higher than the meritPercentage and excellencePercentage, then the grade Excellence is awarded
+studentGrade = "Excellence";
+} else if (meritPercentage >= achievedPercentage) { //Otherwise, if the percentage of correctly answered Merit questions is greater than the percentage of correctly answered achieved questions, then the grade Merit is awarded
+studentGrade = "Merit";
+} else if (achievedPercentage >= 0) {//Then, as long as the student hasn't gotten everything wrong, they get the grade Achieved
+studentGrade = "Achieved";
+} else {
+studentGrade = "Not Achieved";//And if they get nothing correct, they get the grade Not Achieved
+}
+System.out.println(studentGrade);//The Student's Grade is then determined
+}
